@@ -16,15 +16,18 @@
 
          <div class="form-group" >
              <input id="lunch-menu" type="text"
-             placeholder="list comma separated dishes you usually have for lunch"
+             placeholder="list comma separated dishes you usually have for lunch" ng-model="lunchText"
              class="form-control">
          </div>
          <div class="form-group">
-             <button class="btn btn-default">Check If Too Much</button>
+             <button class="btn btn-default" ng-click="countItems()" >Check If Too Much</button>
          </div>
          <div class="form-group message">
+          You had {{lunchText}} ! </br>
+          Number of items for lunch: 
+          {{lunchItems}}  </br>
+          My opinion is: 
           {{test}}
-           <!-- Your message can go here. -->
          </div>
    </div>
 
