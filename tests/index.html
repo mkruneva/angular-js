@@ -1,14 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="MyFirstApp">
 <head>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
 	<title>Hello Coursera</title>
 </head>
 <body>
 	<h1>Hello Coursera</h1>
+	<div ng-controller="MyFirstController">
+		<!-- <input type="texts" 
+		ng-model="name"
+		ng-blur="upper();">
+		Here is the name: {{name}} -->
 
-	<script id="__bs_script__">//<![CDATA[
-    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.12'><\/script>".replace("HOST", location.hostname));
-	//]]></script>
+		<div>
+			<button ng-click="feedMe()">{{buttonText}}</button>
+			<br>
+			<img ng-src="{{stateOfBeing}}">
+		</div>
+	</div>
 
 </body>
 </html>
