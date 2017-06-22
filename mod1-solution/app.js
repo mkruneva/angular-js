@@ -6,41 +6,42 @@
 
 	.controller('LunchCheckController', function ($scope) {
 		$scope.lunchText = "";
-		$scope.lunchItems = 0;
-		//$scope.test = "it works";
 
-		expressOpinion(0);
-
-		$scope.countItems = function () {
-			var totalNumItems = calculateComas ($scope.lunchText); // get the total number of items by counting comas 
-			$scope.lunchItems = totalNumItems;
-			// body...
-		}
-
-
-		function calculateComas (string) {
-			var commas = 0;
-			for (var i = string.length - 1; i >= 0; i--) {
-				if ((((string[i]).match(/,/g) || []).length)) {
-					commas++;
-				};
-			};
-			return commas; 
-		}
-
-			function expressOpinion (number) {
-			if (number>5) {
-				$scope.test = "Waay too much!";
-			} 
-				else if (number>3) {
-					$scope.test = "Too much!";
-				}
-					else if (number>0) {
-						$scope.test = "Enjoy!";
+		$scope.displayMessage = function () {
+		var number = countItems($scope.lunchText);
+		//$scope.count = number;
+		if (isEmpty($scope.lunchText)) {
+			$scope.message = "Please enter data first";
+		} 
+			else if (number>5) {
+					$scope.message = "Waay too much!";
+				} 
+					else if (number>3) {
+						$scope.message = "Too much!";
 					}
-						else {
-							$scope.test = "Have you eaten at all?!?"
-						};
+						else if (number>0) {
+							$scope.message = "Enjoy!";
+						}
+							else {
+								$scope.message = "Have you eaten at all?!?"
+							};
 			};
+
+		function countItems (string) {
+			var res = string.split(",");
+			var number = 0;
+			for (var i = res.length - 1; i >= 0; i--) {
+				if(!isEmpty(res[i])) {
+					number++;
+				}
+			};
+			return number;
+		}
+
+
+		function isEmpty (string) {
+			return (string === undefined || string == null || string.length <= 0) ? true : false;
+		}
+			
 	})
 })();
