@@ -9,22 +9,33 @@
 
 		$scope.displayMessage = function () {
 		var number = countItems($scope.lunchText);
-		//$scope.count = number;
+		// $scope.count = number;
 		if (isEmpty($scope.lunchText)) {
-			$scope.message = "Please enter data first";
+			$scope.message = "Have you eaten at all? Please enter data first";
+			$scope.messageStyle = {
+				        "color" : "#cc0000", 
+				        "border": "2px solid #cc0000",
+				        "border-radius" : "10px"
+				    }
 		} 
 			else if (number>5) {
-					$scope.message = "Waay too much!";
+					$scope.message = "Waay too much !";
+					$scope.messageStyle = {
+				        "color" : "#cc0000"
+				    }
 				} 
 					else if (number>3) {
-						$scope.message = "Too much!";
+						$scope.message = "Too much !";
+						$scope.messageStyle = {
+				        	"color" : "#cc4800"
+				    	}
 					}
-						else if (number>0) {
-							$scope.message = "Enjoy!";
-						}
-							else {
-								$scope.message = "Have you eaten at all?!?"
-							};
+						else {
+							$scope.message = "Enjoy !";
+							$scope.messageStyle = {
+					        	"color" : "#10cc00"
+					    	}
+						};
 			};
 
 		function countItems (string) {
@@ -40,7 +51,7 @@
 
 
 		function isEmpty (string) {
-			return (string === undefined || string == null || string.length <= 0) ? true : false;
+			return (string === undefined || string == null || string.length <= 0 || string == "" || string == " ") ? true : false;
 		}
 			
 	})

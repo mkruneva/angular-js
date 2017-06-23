@@ -1,15 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="LunchCheck" >
   <head>
     <title>Lunch Checker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
     <style>
-      .message { font-size: 1.3em; font-weight: bold; }
+      h1, .message {font-family: 'Architects Daughter', cursive }
+      .message { font-size: 1.8em; font-weight: bold; display: block; padding: 10px }
     </style>
     
   </head>
-<body ng-app="LunchCheck">
+<body >
    <div class="container" ng-controller="LunchCheckController">
      <h1>Lunch Checker</h1>
 
@@ -18,10 +20,11 @@
              placeholder="list comma separated dishes you usually have for lunch" ng-model="lunchText"
              class="form-control">
          </div>
+         <p>Empty items are not considered</p>
          <div class="form-group">
              <button class="btn btn-default" ng-click="displayMessage()" >Check If Too Much</button>
          </div>
-         <div class="form-group message">
+         <div class="form-group message" ng-style="messageStyle">
           <!-- {{count}} -->
           {{message}}
          </div>
