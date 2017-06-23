@@ -4,14 +4,17 @@
 
 	angular.module('LunchCheck', [])
 
-	.controller('LunchCheckController', function ($scope) {
+	.controller('LunchCheckController', messageDisplay);
+	messageDisplay.$inject = ['$scope'];
+
+	function messageDisplay ($scope) {
 		$scope.lunchText = "";
 
 		$scope.displayMessage = function () {
 		var number = countItems($scope.lunchText);
 		// $scope.count = number;
 		if (isEmpty($scope.lunchText)) {
-			$scope.message = "Have you eaten at all? Please enter data first";
+			$scope.message = "Have you eaten at all ? Please enter data first";
 			$scope.messageStyle = {
 				        "color" : "#cc0000", 
 				        "border": "2px solid #cc0000",
@@ -54,5 +57,8 @@
 			return (string === undefined || string == null || string.length <= 0 || string == "" || string == " ") ? true : false;
 		}
 			
-	})
+	}
 })();
+
+//Minified code: 
+//!function(){"use strict";function e(e){function c(e){for(var c=e.split(","),t=0,l=c.length-1;l>=0;l--)o(c[l])||t++;return t}function o(e){return void 0===e||null==e||e.length<=0||""==e||" "==e?!0:!1}e.lunchText="",e.displayMessage=function(){var t=c(e.lunchText);o(e.lunchText)?(e.message="Have you eaten at all ? Please enter data first",e.messageStyle={color:"#cc0000",border:"2px solid #cc0000","border-radius":"10px"}):t>5?(e.message="Waay too much !",e.messageStyle={color:"#cc0000"}):t>3?(e.message="Too much !",e.messageStyle={color:"#cc4800"}):(e.message="Enjoy !",e.messageStyle={color:"#10cc00"})}}angular.module("LunchCheck",[]).controller("LunchCheckController",e),e.$inject=["$scope"]}();
