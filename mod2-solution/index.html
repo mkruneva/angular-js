@@ -14,30 +14,32 @@
   <h1>Shopping List Check Off</h1>
 
   <!-- Test controller --> 
-  <div class="row" ng-controller='TestController'>
+  <div class="row">
 
     <!-- To Buy List -->
-    <div class="col-md-6" ng-controller="ToBuyController">
+    <div class="col-md-6" ng-controller="ToBuyController as toBuy">
      <h2>To Buy:</h2>
      <!-- Using ng-repeat -->
      <ul>
-       <li ng-repeat="item in shoppingListStart">{{$index}} Buy {{item.quantity}} {{item.name}}  
-          <button class="btn btn-default" ng-click="buyItem($index)">
+       <li ng-repeat="item in toBuy.shoppingListStart">Buy {{item.quantity}} {{item.name}}  
+          <button class="btn btn-default" ng-click="toBuy.buyItem($index)">
             <span class="glyphicon glyphicon-ok"></span> Bought
           </button>
         </li>
      </ul>
-     <div class="emptyMessage" ng-show="isListStartEmpty">Everything is bought!</div>
+     <!-- ng-if="isListStartEmpty" to be used bellow -->
+     <div class="emptyMessage" ng-if="oBuy.message">Everything is bought!</div>
     </div>
 
     <!-- Already Bought List -->
-    <div class="col-md-6" ng-controller="AlreadyBoughtController">
+    <div class="col-md-6" ng-controller="AlreadyBoughtController as alBought">
      <h2>Already Bought:</h2>
      <ul>
-       <li ng-repeat="item in shoppingListEnd">Bought {{item.quantity}} {{item.name}}  
+       <li ng-repeat="item in alBought.shoppingListEnd">Bought {{item.quantity}} {{item.name}}  
         </li>
      </ul>
-     <div class="emptyMessage" ng-show="isListEndEmpty">Nothing bought yet.</div>
+     <!-- ng-if="isListEndEmpty" to be used bellow -->
+     <div class="emptyMessage" ng-if="alBought.message">Nothing bought yet.</div>
     </div>
   </div>
 </div>

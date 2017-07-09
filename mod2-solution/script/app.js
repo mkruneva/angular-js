@@ -1,55 +1,43 @@
 (function (argument) {	
 'use strict';
 
-var shoppingListStart = [
-  {
-    name: "Milk",
-    quantity: "2"
-  },
-  {
-    name: "Donuts",
-    quantity: "200"
-  },
-  {
-    name: "Cookies",
-    quantity: "300"
-  },
-  {
-    name: "Chocolate",
-    quantity: "5"
-  },
-  {
-    name: "IceCream",
-    quantity: "10"
-  }
-
-];
-
-var shoppingListEnd = [];
-
-var isListStartEmpty = 0;
-var isListEndEmpty = 1;
-
-
 angular.module('ShoppingListCheckOff', [])
 .controller('ToBuyController', ToBuyController)
 .controller('AlreadyBoughtController', AlreadyBoughtController)
-.service('ShoppingListCheckOffService', ShoppingListCheckOffService)
-//Test controller
-.controller('TestController', TestController);
+.service('ShoppingListCheckOffService', ShoppingListCheckOffService);
 
 
 // To Buy Controller
 ToBuyController.$inject = ['ShoppingListCheckOffService'];
 function ToBuyController(ShoppingListCheckOffService) {
-	// body...
+  var toBuy = this;
+
+  toBuy.shoppingListStart = ShoppingListCheckOffService.showItems();
+
+  toBuy.buyItem = function (i) {
+    ShoppingListCheckOffService.buyItem(i);
+  }
+
+  toBuy.message = function () {
+    return (toBuy.shoppingListStart.length == 0);
+  }
+
+
 }
 
 
 // Already Bougth Controller
 AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
 function AlreadyBoughtController(ShoppingListCheckOffService) {
-	// body...
+
+  var alBought = this;
+  
+  alBought.shoppingListEnd = ShoppingListCheckOffService.showBougthItems();
+
+  alBought.message = function () {
+      return (alBought.shoppingListEnd.length == 0);
+    }
+
 }
 
 
@@ -57,39 +45,51 @@ function AlreadyBoughtController(ShoppingListCheckOffService) {
 function ShoppingListCheckOffService() {
 	var service = this;
 
-}
+  var shoppingListStart = [
+    {
+      name: "Milk",
+      quantity: "2"
+    },
+    {
+      name: "Donuts",
+      quantity: "200"
+    },
+    {
+      name: "Cookies",
+      quantity: "300"
+    },
+    {
+      name: "Chocolates",
+      quantity: "5"
+    },
+    {
+      name: "IceCream",
+      quantity: "10"
+    }
 
+  ];
 
-//Test Controller 
-TestController.$inject = ['$scope'];
-function TestController($scope) {
-  $scope.shoppingListStart = shoppingListStart;
-  $scope.shoppingListEnd = shoppingListEnd;
+  var shoppingListEnd = [];
 
-  $scope.isListStartEmpty = isListStartEmpty;
-  $scope.isListEndEmpty = isListEndEmpty;
+  //exposing the shoppingListStar array
+  service.showItems = function () {
+    return shoppingListStart;
+  };
 
-  console.log("$scope.shoppingListStart.length", $scope.shoppingListStart.length);
-  console.log("isListStartEmpty", isListStartEmpty);
-  console.log("isListEndEmpty", isListEndEmpty);
-
-  $scope.buyItem = function(i) {
-    //console.log(i);
-	  var newItem = {
-	      name: $scope.shoppingListStart[i].name,
-	      quantity: $scope.shoppingListStart[i].quantity
-	    };
-    //console.log(newItem);
-  	$scope.shoppingListEnd.push(newItem);
-    $scope.shoppingListStart.splice(i, 1);
-    $scope.isListEndEmpty = 0;
-    $scope.isListStartEmpty = (($scope.shoppingListStart.length === 0) ? 1 : 0);
+  service.showBougthItems = function () {
+    return shoppingListEnd;
   }
 
-
-
-
+  service.buyItem = function(i) {
+    //console.log(i);
+     var newItem = {
+         name: shoppingListStart[i].name,
+         quantity: shoppingListStart[i].quantity
+       };
+      //console.log(newItem);
+      shoppingListEnd.push(newItem);
+      shoppingListStart.splice(i, 1);
+    }
 }
-
 
 })();
