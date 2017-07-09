@@ -25,16 +25,10 @@ var shoppingListStart = [
 
 ];
 
-var shoppingListEnd = [
-	{
-	    name: "blabla",
-	    quantity: "5"
-	  },
-	  {
-	    name: "blabla",
-	    quantity: "10"
-  }
-];
+var shoppingListEnd = [];
+
+var isListStartEmpty = 0;
+var isListEndEmpty = 1;
 
 
 angular.module('ShoppingListCheckOff', [])
@@ -71,20 +65,30 @@ TestController.$inject = ['$scope'];
 function TestController($scope) {
   $scope.shoppingListStart = shoppingListStart;
   $scope.shoppingListEnd = shoppingListEnd;
-  console.log("$scope.shoppingListStart: ", $scope.shoppingListStart);
 
-  //Test Function - should be removing items from array 1 and adding them to Array 2
+  $scope.isListStartEmpty = isListStartEmpty;
+  $scope.isListEndEmpty = isListEndEmpty;
 
-  $scope.boughtItem = function () {
-  	console.log("$scope.shoppingListStart inside function: ", $scope.shoppingListStart);
+  console.log("$scope.shoppingListStart.length", $scope.shoppingListStart.length);
+  console.log("isListStartEmpty", isListStartEmpty);
+  console.log("isListEndEmpty", isListEndEmpty);
+
+  $scope.buyItem = function(i) {
+    //console.log(i);
 	  var newItem = {
-	  		// the code does not work as it refers to the whhole array and not to the object , should be mede to refer to the object that is clicked
-	      name: $scope.shoppingListStart.name,
-	      quantity: $scope.shoppingListStart.quantity
+	      name: $scope.shoppingListStart[i].name,
+	      quantity: $scope.shoppingListStart[i].quantity
 	    };
-	    //$scope.shoppingListEnd.push(newItem);
-		//shoppingListStart.pop();
+    //console.log(newItem);
+  	$scope.shoppingListEnd.push(newItem);
+    $scope.shoppingListStart.splice(i, 1);
+    $scope.isListEndEmpty = 0;
+    $scope.isListStartEmpty = (($scope.shoppingListStart.length === 0) ? 1 : 0);
   }
+
+
+
+
 }
 
 

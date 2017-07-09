@@ -21,18 +21,13 @@
      <h2>To Buy:</h2>
      <!-- Using ng-repeat -->
      <ul>
-       <li ng-repeat="item in shoppingListStart">Buy {{item.quantity}} {{item.name}}  
-          <button class="btn btn-default" ng-click="boughtItem()">
+       <li ng-repeat="item in shoppingListStart">{{$index}} Buy {{item.quantity}} {{item.name}}  
+          <button class="btn btn-default" ng-click="buyItem($index)">
             <span class="glyphicon glyphicon-ok"></span> Bought
           </button>
         </li>
      </ul>
-     <!-- Example -->
-     <!-- <ul>
-       <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
-       <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
-     </ul> -->
-     <div class="emptyMessage">Everything is bought!</div>
+     <div class="emptyMessage" ng-show="isListStartEmpty">Everything is bought!</div>
     </div>
 
     <!-- Already Bought List -->
@@ -42,7 +37,7 @@
        <li ng-repeat="item in shoppingListEnd">Bought {{item.quantity}} {{item.name}}  
         </li>
      </ul>
-     <div class="emptyMessage">Nothing bought yet.</div>
+     <div class="emptyMessage" ng-show="isListEndEmpty">Nothing bought yet.</div>
     </div>
   </div>
 </div>
