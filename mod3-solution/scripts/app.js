@@ -4,7 +4,8 @@
 
 angular.module('NarrowItDownApp', [])
 .controller('NarrowItDownController', NarrowItDownController)
-.service('MenuSearchService', MenuSearchService);
+.service('MenuSearchService', MenuSearchService)
+.constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
 //Declare and create foundItems directive.
 
 
@@ -13,30 +14,40 @@ NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController (MenuSearchService) {
 	var narrowCtrl = this;
 
-	
-	////test if service is properly injected in the controller
-	//narrowCtrl.testText = MenuSearchService.getMatchedMenuItems();
+	var promise = MenuSearchService.getMenuItems();
 
-	narrowCtrl.getItems = function (searchTerm) {
-		MenuSearchService.getMatchedMenuItems(searchTerm);
-	}
-
+	promise.then(function (response) {
+		narrowCtrl.menuItems = response.data;
+		console.log(narrowCtrl.menuItems);
+	})
+	.catch(function (error) {
+		console.log("something went wrong");
+	});
 
 	// the controller should call the getMatchedMenuItems method when appropriate and store the result in a property called found attached to the controller instance.
 }
 
 
+MenuSearchService.$inject = ['$http', 'ApiBasePath'];
 // MenuSearchService Definition 
-function MenuSearchService () {
+function MenuSearchService ($http, ApiBasePath) {
 	var service = this;
 
-	service.getMatchedMenuItems = function (searchTerm) {
-		console.log("ok, that seems to work and is showing " + searchTerm);
+	service.getMenuItems = function () {
+		var response = $http({
+			method : "GET",
+			url: (ApiBasePath + "/menu_items.json")
+		});
+
+		return response;
 	}
 
 
-
 	//should have method getMatchedMenuItems(searchTerm) - responsible for eaching out to the server (using the $http service) to retrieve the list of all the menu items.
+
+	service.getMatchedMenuItems = function (searchTerm) {
+		//body...
+	}
 
 }
 

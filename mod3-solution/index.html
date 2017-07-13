@@ -12,9 +12,8 @@
 <body>
    <div class="container" ng-controller="NarrowItDownController as narrowCtrl">
     <h1>Narrow Down Your Chinese Menu Choice</h1>
-
-    <!-- test service / controller  -->
-    <h3>{{narrowCtrl.testText}}</h3>
+    <!-- testing the menuItems array -->
+    <p>{{narrowCtrl.menuItems.menu_items[5]}}</p>
 
     <div class="form-group">
       <input type="text" placeholder="search term" class="form-control">
