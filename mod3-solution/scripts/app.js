@@ -17,10 +17,7 @@ function NarrowItDownController (MenuSearchService) {
 	var promise = MenuSearchService.getMenuItems();
 
 	promise.then(function (response) {
-		narrowCtrl.menuItems = response.data;
-		narrowCtrl.categories = response.data.menu_items;
-		console.log("menuItems = ", response.data);
-		console.log("categories = ", response.data.menu_items);
+		narrowCtrl.menuItems = response.data.menu_items;
 	})
 	.catch(function (error) {
 		console.log("something went wrong");

@@ -12,13 +12,10 @@
 <body>
    <div class="container" ng-controller="NarrowItDownController as narrowCtrl">
     <h1>Narrow Down Your Chinese Menu Choice</h1>
-    <!-- testing the menuItems array -->
+    <!-- testing the Categories array -->
     <ol>
-      <li>{{narrowCtrl.categories[5].description}}</li>
-    </ol>
-    <ol>
-      <li ng-repeat="item in narrowCtrl.categories">
-        {{narrowCtrl.categories.description}}
+      <li ng-repeat="item in narrowCtrl.menuItems">
+        {{item.name}}
       </li>
     </ol>
 
