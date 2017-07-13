@@ -13,7 +13,14 @@
    <div class="container" ng-controller="NarrowItDownController as narrowCtrl">
     <h1>Narrow Down Your Chinese Menu Choice</h1>
     <!-- testing the menuItems array -->
-    <p>{{narrowCtrl.menuItems.menu_items[5]}}</p>
+    <ol>
+      <li>{{narrowCtrl.categories[5].description}}</li>
+    </ol>
+    <ol>
+      <li ng-repeat="item in narrowCtrl.categories">
+        {{narrowCtrl.categories.description}}
+      </li>
+    </ol>
 
     <div class="form-group">
       <input type="text" placeholder="search term" class="form-control">

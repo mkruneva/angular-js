@@ -6,7 +6,7 @@ angular.module('NarrowItDownApp', [])
 .controller('NarrowItDownController', NarrowItDownController)
 .service('MenuSearchService', MenuSearchService)
 .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
-//Declare and create foundItems directive.
+//Declare and create foundItems directive
 
 
 // NarrowItDownController as narrowCtrl definition 
@@ -18,7 +18,9 @@ function NarrowItDownController (MenuSearchService) {
 
 	promise.then(function (response) {
 		narrowCtrl.menuItems = response.data;
-		console.log(narrowCtrl.menuItems);
+		narrowCtrl.categories = response.data.menu_items;
+		console.log("menuItems = ", response.data);
+		console.log("categories = ", response.data.menu_items);
 	})
 	.catch(function (error) {
 		console.log("something went wrong");
