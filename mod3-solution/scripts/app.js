@@ -14,9 +14,9 @@ function FoundItemsDirective() {
 	var ddo = {
 		templateUrl: 'foundItems.html',
 		scope: {
-			menuItems: '<',
-		    //foundItems: '<',    //items should be named foundItems found-items
-		    onRemove: '&'
+			controllerScope: '<',
+		    //foundItems: '<',    //the property should be named found-items
+		    //onRemove: '&'
 	    }
 	 
 	};
@@ -42,6 +42,13 @@ function NarrowItDownController (MenuSearchService) {
 
 
 
+	narrowCtrl.removeItem = function (itemIndex) {
+		console.log('Remove Iitem ' + itemIndex.index);
+		MenuSearchService.removeItem(narrowCtrl.menuItems, itemIndex);
+	}
+
+
+
 	// the controller should call the getMatchedMenuItems method when appropriate and store the result in a property called found attached to the controller instance.
 }
 
@@ -50,7 +57,6 @@ MenuSearchService.$inject = ['$http', 'ApiBasePath'];
 // MenuSearchService Definition 
 function MenuSearchService ($http, ApiBasePath) {
 	var service = this;
-
 	var foundItems = [];
 
 	service.getMenuItems = function () {
@@ -60,14 +66,20 @@ function MenuSearchService ($http, ApiBasePath) {
 		});
 
 		return response;
-	}
+	};
 
 
 	//should have method getMatchedMenuItems(searchTerm) - responsible for eaching out to the server (using the $http service) to retrieve the list of all the menu items.
 
 	service.getMatchedMenuItems = function (searchTerm) {
 		//body...
-	}
+	};
+
+	service.removeItem = function (items, itemIndex) {
+		items.splice(itemIndex, 1);
+	};
+
+
 
 
 }

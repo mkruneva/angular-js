@@ -1,7 +1,7 @@
 <ol>
-	<li ng-repeat="item in menuItems.menuItems">
+	<li ng-repeat="item in controllerScope.menuItems">
 			{{item.name}} {{item.short_name}}<br>
 			{{item.description}}
-			<button ng-click="">Don't want this one!</button>
+			<button class="btn btn-default btn-sm" ng-click="controllerScope.removeItem($index);">Don't want this one!</button>
 	</li>
 </ol>
