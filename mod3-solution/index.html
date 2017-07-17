@@ -13,6 +13,7 @@
    <div class="container" ng-controller="NarrowItDownController as narrowCtrl">
     <h1>Narrow Down Your Chinese Menu Choice</h1>
     <!-- testing the Categories array -->
+<<<<<<< HEAD
     <ol>
       <li ng-repeat="item in narrowCtrl.menuItems">
         <found-items></found-items>
@@ -21,12 +22,21 @@
 
     
 
+=======
+>>>>>>> 320c2de22a5b3cf18521af0048bd21a7674b4f56
     <div class="form-group">
       <input type="text" placeholder="search term" class="form-control">
     </div>
     <div class="form-group narrow-button">
       <button class="btn btn-primary" ng-click="narrowCtrl.getItems(getItems)">Narrow It Down For Me!</button>
     </div>
+
+    <ol>
+      <li ng-repeat="item in narrowCtrl.menuItems">
+        {{item.name}} 
+        <button>"Don't want this one!"</button>
+      </li>
+    </ol>
 
     <!-- found-items should be implemented as a component -->
     <!-- <found-items found-items="...." on-remove="...."></found-items> -->
