@@ -12,11 +12,18 @@ angular.module('NarrowItDownApp', [])
 //directive foundItems
 function FoundItemsDirective() {
 	var ddo = {
-		templateUrl: 'foundItems.html'
+		templateUrl: 'foundItems.html',
+		scope: {
+			menuItems: '<',
+		    //foundItems: '<',    //items should be named foundItems found-items
+		    onRemove: '&'
+	    }
+	 
 	};
 
 	return ddo;
 }
+
 
 
 // NarrowItDownController as narrowCtrl definition 
@@ -33,6 +40,8 @@ function NarrowItDownController (MenuSearchService) {
 		console.log("something went wrong");
 	});
 
+
+
 	// the controller should call the getMatchedMenuItems method when appropriate and store the result in a property called found attached to the controller instance.
 }
 
@@ -41,6 +50,8 @@ MenuSearchService.$inject = ['$http', 'ApiBasePath'];
 // MenuSearchService Definition 
 function MenuSearchService ($http, ApiBasePath) {
 	var service = this;
+
+	var foundItems = [];
 
 	service.getMenuItems = function () {
 		var response = $http({
@@ -57,6 +68,7 @@ function MenuSearchService ($http, ApiBasePath) {
 	service.getMatchedMenuItems = function (searchTerm) {
 		//body...
 	}
+
 
 }
 
