@@ -14,7 +14,7 @@
 
 		<div class="col-md-6">
 			<div class="item-list found-items" ng-if="controllerScope.ifNarrowMenu">
-				<h2>New Menu List based on search</h2>
+				<h2>New List based on search: {{controllerScope.searchTerm}}</h2>
 				<ol>
 					<li ng-repeat="item in controllerScope.foundItems">
 							<span class="item-bold">{{item.name}}, {{item.short_name}}</span><br>
