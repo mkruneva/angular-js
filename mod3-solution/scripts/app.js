@@ -47,15 +47,17 @@ function NarrowItDownController (MenuSearchService) {
 		narrowCtrl.ifFullMenu = true;
 	}
 
-
 	narrowCtrl.searchTermNewArray = function () {
 		narrowCtrl.foundItems = MenuSearchService.searchTermNewArray(narrowCtrl.menuItems, narrowCtrl.searchTerm);
 		narrowCtrl.ifNarrowMenu = true;
 	}
 
-	narrowCtrl.removeItem = function (itemIndex) {
-		console.log('Remove Iitem ' + itemIndex);
+	narrowCtrl.removeItemFull = function (itemIndex) {
 		MenuSearchService.removeItem(narrowCtrl.menuItems, itemIndex);
+	}
+
+	narrowCtrl.removeItemNarrow = function (itemIndex) {
+		MenuSearchService.removeItem(narrowCtrl.foundItems, itemIndex);
 	}
 }
 
@@ -92,8 +94,7 @@ function MenuSearchService ($http, ApiBasePath) {
 			if ((initialArray[i].description.includes(searchTerm))||(initialArray[i].name.includes(searchTerm))) {
 				newArray.push(initialArray[i]);
 			}
-		}
-		console.log("New Array = ", newArray);
+		};
 		return newArray;
 	}
 

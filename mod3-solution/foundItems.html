@@ -6,7 +6,7 @@
 					<li ng-repeat="item in controllerScope.menuItems">
 							<span class="item-bold">{{item.name}}, {{item.short_name}}</span><br>
 							{{item.description}}
-							<button class="btn btn-default btn-sm" ng-click="controllerScope.removeItem($index);">Don't want this one!</button>
+							<button class="btn btn-default btn-sm" ng-click="controllerScope.removeItemFull($index);">Don't want this one!</button>
 					</li>
 				</ol>
 			</div>
@@ -19,7 +19,7 @@
 					<li ng-repeat="item in controllerScope.foundItems">
 							<span class="item-bold">{{item.name}}, {{item.short_name}}</span><br>
 							{{item.description}}
-							<button class="btn btn-default btn-sm" ng-click="controllerScope.removeItem($index);">Don't want this one!</button>
+							<button class="btn btn-default btn-sm" ng-click="controllerScope.removeItemNarrow($index);">Don't want this one!</button>
 					</li>
 				</ol>
 			<div>
