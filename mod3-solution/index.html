@@ -18,11 +18,12 @@
       <input type="text" ng-model="narrowCtrl.searchTerm" placeholder="search term" class="form-control">
     </div>
     <div class="form-group narrow-button">
-      <button class="btn btn-primary" ng-click="narrowCtrl.getItems()">Narrow It Down For Me!</button>
-      <button class="btn btn-danger" ng-click="narrowCtrl.searchTermNewArray()">Create New Array!</button>
+      <button class="btn btn-primary" ng-click="narrowCtrl.getItems()">Show Full Menu!</button>
+      <button class="btn btn-success" ng-click="narrowCtrl.searchTermNewArray()">Narrow It Down For Me!</button>
     </div>
     <br><br><br>
 
+    <p>{{narrowCtrl.newArray}}</p>
     <found-items controller-scope="narrowCtrl"></found-items>
     <!-- found-items should be implemented as a component -->
     <!-- <found-items found-items="...." on-remove="...."></found-items> -->

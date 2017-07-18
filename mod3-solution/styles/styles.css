@@ -1,5 +1,11 @@
+body {
+  color: #555;
+}
 h1 {
   margin-bottom: 30px;
+}
+h2 {
+  margin: 10px;
 }
 input[type="text"] {
   width: 200px;
@@ -53,4 +59,21 @@ input[type="text"] {
 
 li {
   padding: 1%;
+}
+
+.item-list {
+  padding: 2px 4px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.item-list.menu-items h2 {
+  color: #337ab7;
+}
+
+.item-list.found-items h2 {
+  color: #449d44;
+}
+.item-bold {
+  font-weight:bold;
 }

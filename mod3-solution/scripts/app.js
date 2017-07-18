@@ -45,19 +45,13 @@ function NarrowItDownController (MenuSearchService) {
 
 
 	narrowCtrl.searchTermNewArray = function () {
-		MenuSearchService.searchTermNewArray(narrowCtrl.menuItems, narrowCtrl.searchTerm);
+		narrowCtrl.foundItems = MenuSearchService.searchTermNewArray(narrowCtrl.menuItems, narrowCtrl.searchTerm);
 	}
 
 	narrowCtrl.removeItem = function (itemIndex) {
 		console.log('Remove Iitem ' + itemIndex);
 		MenuSearchService.removeItem(narrowCtrl.menuItems, itemIndex);
 	}
-
-
-
-
-
-	// the controller should call the getMatchedMenuItems method when appropriate and store the result in a property called found attached to the controller instance.
 }
 
 
