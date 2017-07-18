@@ -41,15 +41,19 @@ function NarrowItDownController (MenuSearchService) {
 		.catch(function (error) {
 			console.log("something went wrong");
 		});
-
-		console.log(narrowCtrl.searchTerm);
 	}
 
+
+	narrowCtrl.searchTermNewArray = function () {
+		MenuSearchService.searchTermNewArray(narrowCtrl.menuItems, narrowCtrl.searchTerm);
+	}
 
 	narrowCtrl.removeItem = function (itemIndex) {
-		console.log('Remove Iitem ' + itemIndex.index);
+		console.log('Remove Iitem ' + itemIndex);
 		MenuSearchService.removeItem(narrowCtrl.menuItems, itemIndex);
 	}
+
+
 
 
 
@@ -83,6 +87,16 @@ function MenuSearchService ($http, ApiBasePath) {
 		items.splice(itemIndex, 1);
 	};
 
+	service.searchTermNewArray = function (initialArray, searchTerm) {
+		var newArray = [];
+		for (var i = initialArray.length - 1; i >= 0; i--) {
+			if ((initialArray[i].description.includes(searchTerm))||(initialArray[i].name.includes(searchTerm))) {
+				newArray.push(initialArray[i]);
+			}
+		}
+		console.log("New Array = ", newArray);
+		return newArray;
+	}
 
 
 
