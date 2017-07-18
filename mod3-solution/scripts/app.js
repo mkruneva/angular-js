@@ -30,16 +30,20 @@ function FoundItemsDirective() {
 NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController (MenuSearchService) {
 	var narrowCtrl = this;
+	narrowCtrl.searchTerm = "";
 
 	var promise = MenuSearchService.getMenuItems();
 
-	promise.then(function (response) {
-		narrowCtrl.menuItems = response.data.menu_items;
-	})
-	.catch(function (error) {
-		console.log("something went wrong");
-	});
+	narrowCtrl.getItems = function () {
+		promise.then(function (response) {
+			narrowCtrl.menuItems = response.data.menu_items;
+		})
+		.catch(function (error) {
+			console.log("something went wrong");
+		});
 
+		console.log(narrowCtrl.searchTerm);
+	}
 
 
 	narrowCtrl.removeItem = function (itemIndex) {
