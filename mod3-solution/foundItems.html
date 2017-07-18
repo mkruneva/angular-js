@@ -1,5 +1,5 @@
 <div class="row">
-		<div class="col-md-6">
+		<div class="col-md-6" ng-if="controllerScope.ifFullMenu">
 			<div class="item-list menu-items">
 				<h2>Full Menu List</h2>
 				<ol>
@@ -13,7 +13,7 @@
 		</div>
 
 		<div class="col-md-6">
-			<div class="item-list found-items">
+			<div class="item-list found-items" ng-if="controllerScope.ifNarrowMenu">
 				<h2>New Menu List based on search</h2>
 				<ol>
 					<li ng-repeat="item in controllerScope.foundItems">
