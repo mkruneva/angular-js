@@ -1,0 +1,28 @@
+<div class="row">
+		<div class="col-md-6" ng-if="controllerScope.ifFullMenu">
+			<div class="item-list menu-items">
+				<h2>Full Menu List</h2>
+				<ol>
+					<li ng-repeat="item in controllerScope.menuItems">
+							<span class="item-bold">{{item.name}}, {{item.short_name}}</span><br>
+							{{item.description}}
+							<button class="btn btn-default btn-sm" ng-click="controllerScope.removeItemFull($index);">Don't want this one!</button>
+					</li>
+				</ol>
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<div class="item-list found-items" ng-if="controllerScope.ifNarrowMenu">
+				<h2>New List based on search: {{controllerScope.searchTerm}}</h2>
+				<ol>
+					<li ng-repeat="item in controllerScope.foundItems">
+							<span class="item-bold">{{item.name}}, {{item.short_name}}</span><br>
+							{{item.description}}
+							<button class="btn btn-default btn-sm" ng-click="controllerScope.removeItemNarrow($index);">Don't want this one!</button>
+					</li>
+				</ol>
+			<div>
+		</div>
+</div>
+
