@@ -1,0 +1,61 @@
+<html>
+<head>
+	<title></title>
+	
+</head>
+<body>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.4/jasmine.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.4/jasmine-html.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.4/boot.js"></script>
+	<script type="text/javascript">
+	
+		function helloWorld() {
+ 			return 'Hello world!';
+		}
+
+		function detectCookie(items) {
+		  for (var i = 0; i < items.length; i++) {
+		    var item = items[i];
+		    if (item.indexOf('cookie') !== -1) {
+		      return true; 
+		    }     
+		  }
+		  return false;
+		}
+
+
+
+		//Jasmine specs 
+		 describe('Hello world', function () {
+		  it('says hello', function () {
+		    expect(helloWorld()).toEqual('Hello world!');
+		  });
+		});
+
+
+		describe('CookieDetector', function() {
+		  var itemsNoCookies;
+		  var itemsWithCookies; 
+		  
+		  beforeEach(function () {
+		    itemsNoCookies = ['apples', 'bananas', 'pears'];
+		    itemsWithCookies = ['chips', 'cookies', 'donuts'];
+		  });
+		  
+		  it('should be able to detect cookies when present', function(){
+		    console.log(detectCookie(['chips', 'cookies', 'donuts']));
+		    var result = detectCookie(itemsWithCookies);
+		    expect(result).toBe(true);
+		  });
+		  
+		  it('should be able to detect no cookies when missing', function(){
+		    var result = detectCookie(itemsNoCookies);
+		    expect(result).toBe(false);
+		  });
+  
+		});
+
+	</script>
+</body>
+</html>
